@@ -1,0 +1,98 @@
+            <a href="#booking" class="btn btn-primary book-now" data-room="Deluxe Suite - ₹250">Book Now</a>
+// ...existing code...
+            <a href="#booking" class="btn btn-primary book-now" data-room="Family Suite - ₹350">Book Now</a>
+// ...existing code...
+            <a href="#booking" class="btn btn-primary book-now" data-room="Luxury Penthouse - ₹500">Book Now</a>
+// ...existing code...
+  <!-- Bootstrap JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const today = new Date().toISOString().split('T')[0];
+      const checkin = document.getElementById('checkin');
+      const checkout = document.getElementById('checkout');
+      const roomSelect = document.getElementById('room');
+      const form = document.querySelector('.booking-form');
+
+      // Set minimum dates to today
+      checkin.min = today;
+      checkout.min = today;
+
+      // When check-in changes, ensure checkout is after check-in
+      checkin.addEventListener('change', function () {
+        if (!this.value) return;
+        const nextDay = new Date(this.value);
+        nextDay.setDate(nextDay.getDate() + 1);
+        checkout.min = nextDay.toISOString().split('T')[0];
+        if (checkout.value && checkout.value <= this.value) {
+          checkout.value = '';
+        }
+      });
+
+      // Preselect room when clicking "Book Now" buttons
+      document.querySelectorAll('.book-now').forEach(btn => {
+        btn.addEventListener('click', function () {
+          const roomText = this.dataset.room || '';
+          for (let i = 0; i < roomSelect.options.length; i++) {
+            if (roomSelect.options[i].text.trim() === roomText) {
+              roomSelect.selectedIndex = i;
+              break;
+            }
+          }
+          setTimeout(() => document.getElementById('name').focus(), 150);
+        });
+      });
+
+      // Form validation and submission
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const guests = parseInt(document.getElementById('guests').value, 10);
+        const roomText = roomSelect.value;
+        const ciVal = checkin.value;
+        const coVal = checkout.value;
+
+        if (!name || !email) {
+          alert('Please enter your name and email.');
+          return;
+        }
+        if (!ciVal || !coVal) {
+          alert('Please select check-in and check-out dates.');
+          return;
+        }
+        const ci = new Date(ciVal);
+        const co = new Date(coVal);
+        if (co <= ci) {
+          alert('Check-out date must be after check-in date.');
+          return;
+        }
+        if (!guests || guests <= 0) {
+          alert('Please enter number of guests (at least 1).');
+          return;
+        }
+
+        const nights = Math.round((co - ci) / (1000 * 60 * 60 * 24));
+        const priceMatch = roomText.match(/₹\s*([\d,]+)/);
+        const pricePerNight = priceMatch ? parseInt(priceMatch[1].replace(/,/g, ''), 10) : 0;
+        const total = nights * pricePerNight;
+
+        const summary =
+          'Booking Confirmed!\n\n' +
+          `Name: ${name}\n` +
+          `Email: ${email}\n` +
+          `Room: ${roomText}\n` +
+          `Check-in: ${ciVal}\n` +
+          `Check-out: ${coVal}\n` +
+          `Nights: ${nights}\n` +
+          `Guests: ${guests}\n` +
+          `Total: ₹${total.toLocaleString()}`;
+
+        alert(summary);
+        form.reset();
+        checkin.min = today;
+        checkout.min = today;
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

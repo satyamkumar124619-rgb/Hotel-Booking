@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Miranda - Events</title>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6fb;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background: #4070f4;
+      color: #fff;
+      padding: 30px 0;
+      text-align: center;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+    .events-section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .events-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    .event-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      padding: 20px;
+      flex: 1 1 250px;
+      min-width: 250px;
+      max-width: 300px;
+      text-align: center;
+      transition: box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .event-card:hover {
+      box-shadow: 0 8px 24px rgba(64,112,244,0.15);
+    }
+    .event-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border: 2px solid #4070f4;
+    }
+    .event-card h3 {
+      margin: 10px 0 10px 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .event-card p {
+      color: #555;
+      font-size: 1rem;
+      margin: 0 0 10px 0;
+    }
+    .event-card .date {
+      color: #4070f4;
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      background: #4070f4;
+      color: #fff;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Upcoming Events</h1>
+    <p>Celebrate your special moments at Hotel Miranda</p>
+  </div>
+  <section class="events-section">
+    <div class="events-list">
+      <div class="event-card">
+        <img src="aa.jpg" alt="Wedding Event"/>
+        <h3>Grand Wedding Ceremony</h3>
+        <div class="date">October 15, 2025</div>
+        <p>Make your dream wedding come true in our elegant banquet hall with premium services.</p>
+      </div>
+      <div class="event-card">
+        <img src="Cooperate conference.png" alt="Corporate Event"/>
+        <h3>Corporate Conference</h3>
+        <div class="date">November 5, 2025</div>
+        <p>Host business meetings and conferences with state-of-the-art facilities and catering.</p>
+      </div>
+      <div class="event-card">
+        <img src="birthday-hall.png" alt="Birthday Party"/>
+        <h3>Birthday Parties</h3>
+        <div class="date">Every Weekend</div>
+        <p>Celebrate birthdays with themed decorations, entertainment, and delicious food.</p>
+      </div>
+      <div class="event-card">
+        <img src="Live music nights.png" alt="Live Music Night"/>
+        <h3>Live Music Nights</h3>
+        <div class="date">Fridays, 7:00 PM</div>
+        <p>Enjoy live performances by talented artists in our lounge every Friday night.</p>
+      </div>
+    </div>
+  </section>
+  <div class="footer">
+    &copy; 2025 Hotel Miranda. All rights reserved.
+  </div>
+</body>
+</html>
